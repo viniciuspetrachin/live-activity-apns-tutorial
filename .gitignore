@@ -18,6 +18,16 @@ expo-env.d.ts
 *.key
 *.mobileprovision
 
+# Credenciais locais (APNs .p8 baixado do EAS)
+/credentials/
+
+tutorial/
+
+.cursor/
+
+GoogleService-Info.plist
+PROMPT.md
+
 # Metro
 .metro-health-check*
 

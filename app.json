@@ -1,13 +1,26 @@
 {
   "expo": {
-    "name": "live-activity-apns-tutorial",
-    "slug": "live-activity-apns-tutorial",
+    "name": "PedidoVivo",
+    "slug": "pedidovivo-apns",
+    "owner": "viniciuspetrachin",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "scheme": "pedidovivo",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.viniciuspetrachin.pedidovivo",
+      "appleTeamId": "XXXXXXXXXX",
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "infoPlist": {
+        "NSSupportsLiveActivities": true,
+        "NSSupportsLiveActivitiesFrequentUpdates": true,
+        "UIBackgroundModes": ["remote-notification"]
+      },
+      "entitlements": {
+        "aps-environment": "development"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -16,10 +29,52 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.viniciuspetrachin.pedidovivo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-dev-client",
+      [
+        "expo-notifications",
+        {
+          "mode": "development"
+        }
+      ],
+      "@react-native-firebase/app",
+      "@react-native-firebase/messaging",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static",
+            "forceStaticLinking": ["RNFBApp", "RNFBMessaging"]
+          }
+        }
+      ],
+      "./plugins/withRnFirebaseDisableSpm",
+      "@bacons/apple-targets",
+      "./plugins/withLiveActivities"
+    ],
+    "extra": {
+      "apiBaseUrl": "http://localhost:8787",
+      "eas": {
+        "projectId": "e4f6360d-9c65-4aec-95a4-718bf1b40464",
+        "build": {
+          "experimental": {
+            "ios": {
+              "appExtensions": [
+                {
+                  "bundleIdentifier": "com.viniciuspetrachin.pedidovivo.widget",
+                  "targetName": "OrderLiveActivity"
+                }
+              ]
+            }
+          }
+        }
+      }
     }
   }
 }
